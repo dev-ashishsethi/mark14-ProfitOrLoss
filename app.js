@@ -12,19 +12,24 @@ function calculate(){
     var currentP= currentPrice.value*quantity;
 
 
-    if(currentP<buyP && Validite(quantity,buyP,currentP)){
+    if(currentP<buyP && Validate(quantity,buyP,currentP)){
         //loss
-        var loss= buyP*quantity-currentP*quantity;
+        var loss= buyP-currentP;
         var lossPercent= (loss/buyP)*100;
-        ShowMessage(`Your loss is ${loss} & loss Percentage is ${lossPercent}`);
-    }else if(butP<currentP && Validite(quantity,buyP,currentP)){
+        ShowMessage(`Your loss is ${loss} & loss Percentage is ${lossPercent}%`);
+    }else if(buyP<currentP && Validate(quantity,buyP,currentP)){
         //profit
-        var profit=currentP*quantity-buyP*quantity;
+        var profit=currentP-buyP;
         var ProfitPercent= (profit/buyP)*100;
-        ShowMessage(`Your profit is ${profit} & profit Percentage is ${ProfitPercent}`);
+        ShowMessage(`Your profit is ${profit} & profit Percentage is ${ProfitPercent}%`);
     }else{
         // no profit no loss
-        ShowMessage(`Your didn't face any Loss or Profit`);
+        if( Validate(quantity,buyP,currentP)===false){
+
+        }else{
+            ShowMessage(`You didn't face any Loss or Profit`);
+        }
+        
     }
 }
 
